@@ -9,4 +9,19 @@ NOMES:   CAROLINA BREITENWIESER RA00222650
 MENU
 PEÇAS 
 */     
-    
+#include <stdio.h>
+#include <ctype.h>
+
+#include "view.h"
+#include "view.h"
+
+void menu(void) {
+	 printf("BEM-VINDX! QUER ENCARAR ESSE JOGO DE DOMINÓ?");
+}
+
+char SimOuNao() {
+	char opcao;
+	opcao = getchar();
+	flush_in();
+	return opcao;
+}
