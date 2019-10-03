@@ -21,7 +21,7 @@ void menu(void) {
 	 
 }
 
-char SimOuNao() {
+char opcao() {
 	char opcao;
 	opcao = getchar();
 	flush_in();
