@@ -4,3 +4,7 @@ NOMES:   CAROLINA BREITENWIESER RA00222650
          CAROLINE UEHARA  RA00
          ZEYNEP SALIHOGLU RA00  
 */
+
+#include "controller.h"
+#include <stdio.h>
+#include <ctype.h>
