@@ -17,10 +17,35 @@ PEÇAS
 #include "view.h"
 
 void exibirMenu(void) {
-	 printf("BEM-VINDO(A)! QUER ENCARAR ESSE JOGO DE DOMINÓ?\n");
-	 printf("MENU DO JOGO\n");
-	 printf("(1) - 
-	 
+
+	printf("MENU DO JOGO\n");
+	
+	//REQ01 NUMERO DE JOGADORES - função get char 
+	
+	//REQ03 EMBARALHAR PEÇAS
+	printf("(03) - EMBARALHAR PEÇAS\n");
+	
+	//REQ04 DISTRIBUIR PEÇAS
+	printf("(04) - DISTRIBUIR PEÇAS\n");
+	
+	//REQ05 INICIAR JOGO
+	printf("(05) - INICIAR JOGO\n");
+	
+	//REQ06 SALVAR O JOGO
+	printf("(06) - SALVAR JOGO\n");
+	
+	//REQ07 CARREGAR JOGO
+	printf("(07) - CARREGAR JOGO\n");
+	
+	//REQ08 ORGANIZAR PEÇAS
+	printf("(08) - ORGANIZAR PEÇAS");
+	
+	//REQ09 MOSTRAR TODAS AS PEÇAS
+	printf("(09) - MOSTRAR TODAS AS PEÇAS /n");
+	
+	//REQ10 VER PEÇAS NA TELA
+	printf("(10) - VER AS PEÇAS NA TELA /n");
+	
 }
 
 char SimOuNao() {
