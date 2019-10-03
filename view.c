@@ -19,6 +19,9 @@ void menu(void) {
 	 printf("BEM-VINDX! QUER ENCARAR ESSE JOGO DE DOMINÓ?");
 }
 
+void menu(jogadores) {
+}
+
 char SimOuNao() {
 	char opcao;
 	opcao = getchar();
