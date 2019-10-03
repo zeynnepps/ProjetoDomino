@@ -12,7 +12,7 @@ PEÇAS
 #include <stdio.h>
 #include <ctype.h>
 
-#include "view.h"
+#include "model.h"
 #include "view.h"
 
 void menu(void) {
