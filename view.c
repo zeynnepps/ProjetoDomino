@@ -38,13 +38,13 @@ void exibirMenu(void) {
 	printf("(07) - CARREGAR JOGO\n");
 	
 	//REQ08 ORGANIZAR PEÇAS
-	printf("(08) - ORGANIZAR PEÇAS");
+	printf("(08) - ORGANIZAR PEÇAS\n");
 	
 	//REQ09 MOSTRAR TODAS AS PEÇAS
-	printf("(09) - MOSTRAR TODAS AS PEÇAS /n");
+	printf("(09) - MOSTRAR TODAS AS PEÇAS \n");
 	
 	//REQ10 VER PEÇAS NA TELA
-	printf("(10) - VER AS PEÇAS NA TELA /n");
+	printf("(10) - VER AS PEÇAS NA TELA \n");
 	
 }
 
