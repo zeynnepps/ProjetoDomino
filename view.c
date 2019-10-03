@@ -21,7 +21,8 @@ void exibirMenu(void) {
 	printf("MENU DO JOGO\n");
 	
 	//REQ01 NUMERO DE JOGADORES - função get char 
-	
+	printf("(01) - OPÇÃO ESCOLHER NUMERO DE JOGADORES:\n");
+	      
 	//REQ03 EMBARALHAR PEÇAS
 	printf("(03) - EMBARALHAR PEÇAS\n");
 	
