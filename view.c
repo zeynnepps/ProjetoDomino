@@ -11,17 +11,19 @@ PEÇAS
 */     
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 
 #include "model.h"
 #include "view.h"
 
-void menu(void) {
-	 printf("BEM-VINDO(A)! QUER ENCARAR ESSE JOGO DE DOMINÓ?");
-	 printf("MENU DO JOGO");
+void exibirMenu(void) {
+	 printf("BEM-VINDO(A)! QUER ENCARAR ESSE JOGO DE DOMINÓ?\n");
+	 printf("MENU DO JOGO\n");
+	 printf("(1) - 
 	 
 }
 
-char opcao() {
+char SimOuNao() {
 	char opcao;
 	opcao = getchar();
 	flush_in();
