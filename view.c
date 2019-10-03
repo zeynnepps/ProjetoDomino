@@ -48,7 +48,7 @@ void exibirMenu(void) {
 	
 }
 
-char opcao() {
+char obterOpcao() {
 	char opcao;
 	opcao = getchar();
 	flush_in();
