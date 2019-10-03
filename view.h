@@ -5,7 +5,7 @@
 
 void exibirMenu(void);
 char obterOpcao();
-
+void flush_in();
 
 #endif /* VIEW_H_ */
 
