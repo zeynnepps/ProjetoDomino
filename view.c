@@ -16,10 +16,9 @@ PEÇAS
 #include "view.h"
 
 void menu(void) {
-	 printf("BEM-VINDX! QUER ENCARAR ESSE JOGO DE DOMINÓ?");
-}
-
-void menu(jogadores) {
+	 printf("BEM-VINDO(A)! QUER ENCARAR ESSE JOGO DE DOMINÓ?");
+	 printf("MENU DO JOGO");
+	 
 }
 
 char SimOuNao() {
