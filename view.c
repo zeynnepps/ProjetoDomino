@@ -61,3 +61,12 @@ void flush_in(){
     int ch;
     while( (ch = fgetc(stdin)) != EOF && ch != '\n' ){}
 }
+
+char opcoesJogo()
+{
+	printf("OPÇÕES DO JOGO");
+	printf("(1) - Mostrar peças do dominó\n");
+	printf("(2) - Carregar jogo salvo\n");
+	printf("(3) - Organizar peças do dominó na sequência\n");
+	printf("(4) - Embaralhar peças do dominó\n");
+}
