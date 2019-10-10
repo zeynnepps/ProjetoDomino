@@ -18,34 +18,18 @@ PEÇAS
 
 void exibirMenu(void) {
 
+	char opcao;
+
+	printf("JOGO DOMINÓ\n");
 	printf("MENU DO JOGO\n");
-	
-	//REQ01 NUMERO DE JOGADORES - função get char 
-	printf("(01) - OPÇÃO ESCOLHER NUMERO DE JOGADORES:\n");
-	      
-	//REQ03 EMBARALHAR PEÇAS
-	printf("(03) - EMBARALHAR PEÇAS\n");
-	
-	//REQ04 DISTRIBUIR PEÇAS
-	printf("(04) - DISTRIBUIR PEÇAS\n");
-	
-	//REQ05 INICIAR JOGO
-	printf("(05) - INICIAR JOGO\n");
-	
-	//REQ06 SALVAR O JOGO
-	printf("(06) - SALVAR JOGO\n");
-	
-	//REQ07 CARREGAR JOGO
-	printf("(07) - CARREGAR JOGO\n");
-	
-	//REQ08 ORGANIZAR PEÇAS
-	printf("(08) - ORGANIZAR PEÇAS\n");
-	
-	//REQ09 MOSTRAR TODAS AS PEÇAS
-	printf("(09) - MOSTRAR TODAS AS PEÇAS \n");
-	
-	//REQ10 VER PEÇAS NA TELA
-	printf("(10) - VER AS PEÇAS NA TELA \n");
+	opcao = getchar();
+
+	printf("(1) - Iniciar jogo\n");
+	printf("(2) - Opções do jogo\n");
+	printf("(3) - Sair do jogo\n");
+	printf("Selecione a opção desejada: ");
+
+	return opcao;
 	
 }
 
