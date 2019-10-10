@@ -16,7 +16,7 @@ PEÇAS
 #include "model.h"
 #include "view.h"
 
-void exibirMenu(void) {
+char exibirMenu() {
 
 	char opcao;
 
