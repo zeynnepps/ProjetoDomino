@@ -3,7 +3,10 @@
 
 #include <stdbool.h>
 
+void iniciarJogo();
+
 #include "model.h"
 #include "view.h"
 
 #endif /* CONTROLLER_H_ */
+
