@@ -10,52 +10,74 @@ MENU
 PEÇAS 
 */     
 #include <stdio.h>
-#include <ctype.h>
 #include <string.h>
+#include <ctype.h>
+#include "dominoView.h"
 
-#include "model.h"
-#include "view.h"
-
-char exibirMenu() {
-
+//menu de quando o jogo é aberto
+char exibirMenu()
+{
 	char opcao;
 
-	printf("JOGO DOMINÓ\n");
+	printf("*~*~*~*~* J O G O  D O M I N Ó *~*~*~*~*\n");
 	printf("MENU DO JOGO\n");
-	opcao = getchar();
-
 	printf("(1) - Iniciar jogo\n");
-	printf("(2) - Opções do jogo\n");
-	printf("(3) - Sair do jogo\n");
+	printf("(2) - Carregar jogo salvo\n");
+	printf("(3) - Opções do jogo\n");
+	printf("(4) - Sair do jogo\n");
 	printf("Selecione a opção desejada: ");
-
-	return opcao;
-	
-}
-
-char obterOpcao() {
-	char opcao;
 	opcao = getchar();
-	flush_in();
+	printf("\n");
+
 	return opcao;
 }
 
-//funcao auxiliar para limpeza do buffer do teclado
-void flush_in(){
-    int ch;
-    while( (ch = fgetc(stdin)) != EOF && ch != '\n' ){}
+//limpeza do buffer do teclado
+void flush_in()
+{
+	int ch;
+	while ((ch = fgetc(stdin)) != EOF && ch != '\n') {}
+}
+
+char determinarQtdJogador()
+{
+	char opcao;
+
+	printf("Qual a quantidade de jogadores?\n");
+	printf("(1) - 1 jogador\n");
+	printf("(2) - 2 jogadores\n");
+	printf("Selecione a opção desejada: ");
+	opcao = getchar();
+	printf("\n");
+
+	return opcao;
 }
 
 char opcoesJogo()
 {
-	printf("OPÇÕES DO JOGO");
+	char opcao;
+
+	printf("OPÇÕES DO JOGO\n");
 	printf("(1) - Mostrar peças do dominó\n");
-	printf("(2) - Carregar jogo salvo\n");
-	printf("(3) - Organizar peças do dominó na sequência\n");
-	printf("(4) - Embaralhar peças do dominó\n");
+	printf("(2) - Organizar peças do dominó na sequência\n"); //no inicio do jogos as peças sâo embaralhadas automaticamente
+	printf("(3) - Embaralhar peças do dominó\n");
+	printf("(4) - Voltar ao Menu\n");
+	printf("Selecione a opção desejada: ");
+	opcao = getchar();
+	flush_in();
+	printf("\n");
+
+	return opcao;
+}
+
+void mostrarMsg(char* msg)
+{
+	printf("%s", msg);
 }
 
 void mostrarPecas()
 {
-	printf("0|0 0|1 0|2 0|3 0|4 0|5 0|6\n1|1 1|2 1|3 1|4 1|5 1|6\n2|2 2|3 2|4 2|5 2|6\n3|3 3|4 3|5 3|6\n4|4 4|5 4|6\n5|5 5|6\n6|6");
+	printf("PEÇAS DO DOMINÓ\n");
+	printf("0|0 0|1 0|2 0|3 0|4 0|5 0|6\n1|1 1|2 1|3 1|4 1|5 1|6\n2|2 2|3 2|4 2|5 2|6\n3|3 3|4 3|5 3|6\n4|4 4|5 4|6\n5|5 5|6\n6|6\n");
+	printf("\n");
 }
