@@ -62,6 +62,7 @@ char opcoesJogo()
 	printf("(2) - Organizar peças do dominó na sequência\n"); //no inicio do jogos as peças sâo embaralhadas automaticamente
 	printf("(3) - Embaralhar peças do dominó\n");
 	printf("(4) - Voltar ao Menu\n");
+    printf("(5) - Salvar jogo\n");
 	printf("Selecione a opção desejada: ");
 	opcao = getchar();
 	flush_in();
