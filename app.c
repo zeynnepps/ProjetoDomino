@@ -5,7 +5,7 @@ NOMES:   CAROLINA BREITENWIESER RA00222650
          ZEYNEP SALIHOGLU RA00  
 */     
     
-#include "dominoController.h"
+#include "controller.h"
 
 void main()
 {
