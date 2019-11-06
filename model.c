@@ -117,73 +117,44 @@ void organizarPecas(tipo_Monte *monte, tipo_Mao *mJ1, tipo_Mao *mJ2)
 }
 
 //se jogador = true, M1 começa. se jogador = false, M2 começa.
-bool buscarPrimeiroJogador(tipo_Mao* M1, tipo_Mao* M2) //ARRUMAR ISSO AQUI
+bool buscarPrimeiroJogador(tipo_Mao* M1, tipo_Mao* M2)
 {
-	bool p66 = false;
-	bool jogador = false;
+	bool p66 = false; //bool para a peça 66, pois se ela for encontrada, não é mais necessário verificar as outras peças.
+	bool dupla = false;
+	bool jogador = false; // decide quem é o primeiro jogador
+
+	int dupla1 = -1; int dupla2 = -1; //recebera qual a maior peça dupla
+
 	int i = 0;
 	int qtde = M1->qtde;
 
-	while ((qtde > 0) && (p66 == false)) //VERIFICA QUAL JOGADOR POSSUI A PEÇA 66
+	while ((qtde > 0) && (p66 == false)) //VERIFICAR A MAIOR PEÇA DUPLA
 	{
-		if ((M1->pecas[i].ladoDireito == 6) && (M1->pecas[i].ladoEsquerdo == 6))
+		if (M1->pecas[i].ladoDireito == M1->pecas[i].ladoEsquerdo)
 		{
-			p66 = true;
-			jogador = true;
-		}
-
-		if ((M2->pecas[i].ladoDireito == 6) && (M2->pecas[i].ladoEsquerdo == 6))
-		{
-			p66 = true;
-			jogador = false;
-		}
-		i++; qtde--;
-	}
-
-	bool achou = false;
-	if (p66 == false)//VERIFICAR QUEM POSSUI A MAIOR PEÇA DUPLA
-	{
-		int qtde = M1->qtde;
-		int local1 = 0; int local2 = 0;
-		int x = 0;
-		int dupla1 = -1; int dupla2 = -1; //recebera qual a peca dupla(se é 55, 44 etc)
-
-		if(achou==false)
-		{
-			while (qtde > 0)//procura a maior peça dupla de cada mão
+			dupla = true;
+			if (dupla1 <= M1->pecas[i].ladoDireito) dupla1 = M1->pecas[i].ladoDireito;
+			if (dupla1 == 6)
 			{
-				if (M1->pecas[x].ladoDireito == M1->pecas[x].ladoEsquerdo)
-				{
-					local1 = M1->pecas[x].ladoDireito;
-					if(dupla1<= local1) dupla1 = M1->pecas[x].ladoDireito;
-				}
-
-				if (M2->pecas[x].ladoDireito == M2->pecas[x].ladoEsquerdo)
-				{
-					local2 = M2->pecas[x].ladoDireito;
-					if (dupla2 <= local2) dupla2 = M2->pecas[x].ladoDireito;
-				}
-
-				x++; qtde--;
-			}
-
-			if (dupla1 > dupla2)
-			{
+				p66 = true;
 				jogador = true;
-				achou = true;
-			}
-			else
-			{
-				if (dupla2 > dupla1)
-				{
-					jogador = false;
-					achou = true;
-				}
+
 			}
 		}
+
+		if (M2->pecas[i].ladoDireito == M2->pecas[i].ladoEsquerdo)
+		{
+			dupla = true;
+			if (dupla2 <= M2->pecas[i].ladoDireito) dupla2 = M2->pecas[i].ladoDireito;
+			if (dupla2 == 6)
+			{
+				p66 = true;
+			}
+		}
+		i++, qtde--;
 	}
 
-	if (p66 == false && achou == false)//VERIFICA QUAL JOGADOR POSSUI MAO COM MENOR SOMA, SE NINGUEM TIVER PEÇA DUPLA
+	if (p66 == false && dupla == false)//VERIFICA QUAL JOGADOR POSSUI MAO COM MENOR SOMA, SE NINGUEM TIVER PEÇA DUPLA
 	{
 		int somaM1 = 0;
 		int somaM2 = 0;
@@ -214,3 +185,4 @@ bool buscarPrimeiroJogador(tipo_Mao* M1, tipo_Mao* M2) //ARRUMAR ISSO AQUI
 	return jogador;
 
 }
+
