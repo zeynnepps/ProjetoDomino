@@ -5,7 +5,7 @@ NOMES:   CAROLINA BREITENWIESER RA00222650
          ZEYNEP SALIHOGLU RA00227219  
 */     
 
-#include "dominoModel.h"
+#include "model.h"
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
