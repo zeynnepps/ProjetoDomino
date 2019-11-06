@@ -7,8 +7,8 @@ NOMES:   CAROLINA BREITENWIESER RA00222650
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include "dominoView.h"
-#include "dominoModel.h"
+#include "view.h"
+#include "model.h"
 
 //menu de quando o jogo é aberto
 char exibirMenu()
