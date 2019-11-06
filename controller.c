@@ -5,33 +5,14 @@ NOMES:   CAROLINA BREITENWIESER RA00222650
          ZEYNEP SALIHOGLU RA00  
 */
 
-#include "controller.h"
-#include <stdio.h>
-#include <ctype.h>
-#include <stdbool.h>
-
 #include "dominoModel.h"
 #include "dominoView.h"
 #include "dominoController.h"
+#include <stdbool.h>
+#include <stdio.h>
 
 void iniciarJogo()
 {
-	tipo_Monte teste;
-	teste = criarPecas();
-	teste = embaralharPecas(teste);
-	
-	tipo_Mao M1, M2;
-	M1 = criarMaoJogador();
-	M2 = criarMaoJogador();
-
-	teste = distribuirPecas(teste, &M1, &M2);
-
-	bool ok;
-	ok = comprarPeca(&teste, &M1);
-
-
-
-
 	char opcao, jogadores, opJogo;
 	bool fim;
 	fim = false;
@@ -48,7 +29,7 @@ void iniciarJogo()
 			switch (jogadores) 
 			{
 			case '1':
-				//opcao 1 jogador
+				//iniciarPartida();
 				break;
 			case '2':
 				//opcao 2 jogador
@@ -68,13 +49,10 @@ void iniciarJogo()
 			case '1': //MOSTRA AS PECAS DO DOMINO
 				mostrarPecas();
 				break;
-			case '2': //ORGANIZA AS PECAS DO DOMINO
-				printf("opcao organizar\n");
+			case '2': //REGRAS DO DOMINO
+				regrasDomino();
 				break;
-			case '3'://EMBARALHA AS PEÇAS DO DOMINO
-				printf("opcao embaralhar\n");
-				break;
-			case '4'://SAI DAS OPCOES E VOLTA PARA O MENU
+			case '3':
 				break;
 			default:
 				mostrarMsg("Opção inválida.\n");
@@ -90,6 +68,28 @@ void iniciarJogo()
 		}
 	} while (!fim);
 
+}
 
+void iniciarPartida()
+{
+	tipo_Monte monte;
+	tipo_Mao M1, M2;
+	bool primeiro;
+
+	monte = criarPecas();
+	monte = embaralharPecas(monte);
+	M1 = criarMaoJogador();
+	M2 = criarMaoJogador();
+	monte = distribuirPecas(monte, &M1, &M2);
+	
+	primeiro = buscarPrimeiroJogador(&M1, &M2);
+	if (primeiro == true)
+	{
+		printf("O jogador M1 é o primeiro a jogar\n"); //apenas teste
+	}
+	else
+	{
+		printf("O jogador M2 é o primeiro a jogar\n"); //apenas teste
+	}
 
 }
