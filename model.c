@@ -107,3 +107,110 @@ bool comprarPeca(tipo_Monte *monte, tipo_Mao *mJ1)
 	return ok; //retorna se foi possivel comprar
 }
 
+//a funcao organizar pecas reseta o monte e as maos
+//obs: as maos estao vazias, pois ainda nao ocorreu a distribuicao das pecas, ou seja, qtde.monte  = 28
+void organizarPecas(tipo_Monte *monte, tipo_Mao *mJ1, tipo_Mao *mJ2)
+{
+	*monte = criarPecas();
+	*mJ1 = criarMaoJogador();
+	*mJ2 = criarMaoJogador();
+}
+
+//se jogador = true, M1 começa. se jogador = false, M2 começa.
+bool buscarPrimeiroJogador(tipo_Mao* M1, tipo_Mao* M2) //ARRUMAR ISSO AQUI
+{
+	bool p66 = false;
+	bool jogador = false;
+	int i = 0;
+	int qtde = M1->qtde;
+
+	while ((qtde > 0) && (p66 == false)) //VERIFICA QUAL JOGADOR POSSUI A PEÇA 66
+	{
+		if ((M1->pecas[i].ladoDireito == 6) && (M1->pecas[i].ladoEsquerdo == 6))
+		{
+			p66 = true;
+			jogador = true;
+		}
+
+		if ((M2->pecas[i].ladoDireito == 6) && (M2->pecas[i].ladoEsquerdo == 6))
+		{
+			p66 = true;
+			jogador = false;
+		}
+		i++; qtde--;
+	}
+
+	bool achou = false;
+	if (p66 == false)//VERIFICAR QUEM POSSUI A MAIOR PEÇA DUPLA
+	{
+		int qtde = M1->qtde;
+		int local1 = 0; int local2 = 0;
+		int x = 0;
+		int dupla1 = -1; int dupla2 = -1; //recebera qual a peca dupla(se é 55, 44 etc)
+
+		if(achou==false)
+		{
+			while (qtde > 0)//procura a maior peça dupla de cada mão
+			{
+				if (M1->pecas[x].ladoDireito == M1->pecas[x].ladoEsquerdo)
+				{
+					local1 = M1->pecas[x].ladoDireito;
+					if(dupla1<= local1) dupla1 = M1->pecas[x].ladoDireito;
+				}
+
+				if (M2->pecas[x].ladoDireito == M2->pecas[x].ladoEsquerdo)
+				{
+					local2 = M2->pecas[x].ladoDireito;
+					if (dupla2 <= local2) dupla2 = M2->pecas[x].ladoDireito;
+				}
+
+				x++; qtde--;
+			}
+
+			if (dupla1 > dupla2)
+			{
+				jogador = true;
+				achou = true;
+			}
+			else
+			{
+				if (dupla2 > dupla1)
+				{
+					jogador = false;
+					achou = true;
+				}
+			}
+		}
+	}
+
+	if (p66 == false && achou == false)//VERIFICA QUAL JOGADOR POSSUI MAO COM MENOR SOMA, SE NINGUEM TIVER PEÇA DUPLA
+	{
+		int somaM1 = 0;
+		int somaM2 = 0;
+		int aux1, aux2;
+
+		for (i = 0; i < M1->qtde; i++)
+		{
+			aux1 = M1->pecas[i].ladoDireito + M1->pecas[i].ladoEsquerdo;
+			somaM1 = somaM1 + aux1;
+		}
+		for (i = 0; i < M2->qtde; i++)
+		{
+			aux2 = M2->pecas[i].ladoDireito + M2->pecas[i].ladoEsquerdo;
+			somaM2 = somaM2 + aux2;
+		}
+
+		//verifica qual a menor soma
+		if (somaM1 > somaM2)
+		{
+			jogador = false;
+		}
+		else
+		{
+			jogador = true;
+		}
+	}
+
+	return jogador;
+
+}
