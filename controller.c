@@ -1,15 +1,16 @@
 /*
-PROJETO DO SEGUNDO SEMESTRE DE CIÊNCIA DA COMPUTAÇÃO
-NOMES:   CAROLINA BREITENWIESER RA00222650
-         CAROLINE UEHARA  RA00
-         ZEYNEP SALIHOGLU RA00  
-*/
+ * dominoController.c
+ *
+ *  Created on: 3 de out de 2019
+ *     
+ */
 
-#include "model.h"
-#include "view.h"
-#include "controller.h"
+#include "dominoModel.h"
+#include "dominoView.h"
+#include "dominoController.h"
 #include <stdbool.h>
 #include <stdio.h>
+
 
 void iniciarJogo()
 {
@@ -29,10 +30,10 @@ void iniciarJogo()
 			switch (jogadores) 
 			{
 			case '1':
-				//iniciarPartida();
+				//criar "ia"
 				break;
 			case '2':
-				//opcao 2 jogador
+				iniciarPartida();
 				break;
 			default:
 				mostrarMsg("Opção inválida.\n");
@@ -74,22 +75,110 @@ void iniciarPartida()
 {
 	tipo_Monte monte;
 	tipo_Mao M1, M2;
+	tipo_Mesa mesa; mesa.qtde = 0;
 	bool primeiro;
+	bool fimJogo = false;
+	int jogador1 = 1; int jogador2 = 2;
 
 	monte = criarPecas();
 	monte = embaralharPecas(monte);
 	M1 = criarMaoJogador();
 	M2 = criarMaoJogador();
 	monte = distribuirPecas(monte, &M1, &M2);
-	
+
+	mostrarMsg("Iniciando jogo...\n\n");
+
 	primeiro = buscarPrimeiroJogador(&M1, &M2);
 	if (primeiro == true)
 	{
-		printf("O jogador M1 é o primeiro a jogar\n"); //apenas teste
+		do
+		{
+			vezJogador(&M1, &mesa, &monte, jogador1);
+			fimJogo = checarMaoVazia(M1);
+			if (fimJogo == true)
+			{
+				mostrarMsg("FIM DE JOGO. O JOGADOR 1 VENCEU.\n");
+			}
+			else
+			{
+				vezJogador(&M2, &mesa, &monte, jogador2);
+				fimJogo = checarMaoVazia(M2);
+				if (fimJogo == true)
+				{
+					mostrarMsg("FIM DE JOGO. O JOGADOR 2 VENCEU.\n");
+				}
+			}
+		} while (!fimJogo);
 	}
 	else
 	{
-		printf("O jogador M2 é o primeiro a jogar\n"); //apenas teste
+		do
+		{
+			vezJogador(&M2, &mesa, &monte, jogador2);
+			fimJogo = checarMaoVazia(M2);
+			if (fimJogo == true)
+			{
+				mostrarMsg("FIM DE JOGO. O JOGADOR 2 VENCEU.\n");
+			}
+			else
+			{
+				vezJogador(&M1, &mesa, &monte, jogador1);
+				fimJogo = checarMaoVazia(M1);
+				if (fimJogo == true)
+				{
+					mostrarMsg("FIM DE JOGO. O JOGADOR 1 VENCEU.\n");
+				}
+			}
+		} while (!fimJogo);
 	}
-
 }
+
+void vezJogador(tipo_Mao *M1, tipo_Mesa *mesa, tipo_Monte *monte, int jogador)
+{
+	char opcao; bool fim = true; bool ok; char lado; int peca; bool jogou = false;
+
+	do
+	{
+		mostrarMesa(*mesa);
+		numerodoJogador(jogador);
+		mostrarMao(*M1);
+		opcao = mostrarOpcoes();
+		flush_in();
+
+		switch (opcao)
+		{
+		case '1':
+			peca = obterPecaJogada();
+			flush_in();
+
+			lado = obterLadoJogado();
+			flush_in();
+
+			jogou = jogarPeca(mesa, M1, peca, lado);
+			if (jogou == true)
+			{
+				fim = false;
+			}
+			break;
+		case '2':
+			ok = comprarPeca(monte, M1);
+			if (ok == false)
+			{
+				mostrarMsg("Monte vazio. Você passará sua vez.\n");
+				fim = false;
+			}
+			break;
+		case '3':
+			//salvar jogo
+			break;
+		case '4':
+			sairDoJogo();
+			break;
+		default:
+			mostrarMsg("Opção inválida.\n");
+			break;
+		}
+		limparTela();
+	} while (fim);
+}
+
