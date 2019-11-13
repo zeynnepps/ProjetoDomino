@@ -1,5 +1,12 @@
-#ifndef MODEL_H_
-#define MODEL_H_
+/*
+ * dominoModel.h
+ *
+ *  Created on: 3 de out de 2019
+ *      
+ */
+
+#ifndef DOMINOMODEL_H_
+#define DOMINOMODEL_H_
 
 #include<stdbool.h>
 
@@ -19,7 +26,7 @@ typedef struct Monte
 //conjunto de peças que cada jogador possui
 typedef struct Mao
 {
-	tipo_Peca pecas[20];
+	tipo_Peca pecas[21];
 	int qtde;
 }tipo_Mao;
 
@@ -38,5 +45,14 @@ tipo_Monte distribuirPecas(tipo_Monte monte, tipo_Mao *mJ1, tipo_Mao *mJ2);
 bool comprarPeca(tipo_Monte *monte, tipo_Mao *mJ1);
 void organizarPecas(tipo_Monte* monte, tipo_Mao* mJ1, tipo_Mao* mJ2);
 bool buscarPrimeiroJogador(tipo_Mao* M1, tipo_Mao* M2);
+void inverterPeca(tipo_Peca *peca);
+bool checarMaoVazia(tipo_Mao M1);
 
-#endif /* MODEL_H_ */
+bool jogarPeca(tipo_Mesa* mesa, tipo_Mao* M1, int peca, char ladoJogado);
+void removerPecaMao(tipo_Mao *M1, int peca);
+
+
+void sairDoJogo();
+
+
+#endif /* DOMINOMODEL_H_ */
