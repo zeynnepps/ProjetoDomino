@@ -1,11 +1,11 @@
 /*
-PROJETO DO SEGUNDO SEMESTRE DE CIÊNCIA DA COMPUTAÇÃO
-NOMES:   CAROLINA BREITENWIESER RA00222650
-         CAROLINE UEHARA  RA00222619
-         ZEYNEP SALIHOGLU RA00227219  
-*/     
+ * dominoModel.c
+ *
+ *  Created on: 3 de out de 2019
+ *      
+ */
 
-#include "model.h"
+#include "dominoModel.h"
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
@@ -100,7 +100,7 @@ bool comprarPeca(tipo_Monte *monte, tipo_Mao *mJ1)
 	ok = false;
 	if (monte->qtde > 0)
 	{
-		mJ1->pecas[mJ1->qtde] = monte->pecas[monte->qtde];
+		mJ1->pecas[mJ1->qtde] = monte->pecas[(monte->qtde)-1];
 		monte->qtde--; mJ1->qtde++;
 		ok = true;
 	}
@@ -117,7 +117,7 @@ void organizarPecas(tipo_Monte *monte, tipo_Mao *mJ1, tipo_Mao *mJ2)
 }
 
 //se jogador = true, M1 começa. se jogador = false, M2 começa.
-bool buscarPrimeiroJogador(tipo_Mao* M1, tipo_Mao* M2)
+bool buscarPrimeiroJogador(tipo_Mao *M1, tipo_Mao *M2)
 {
 	bool p66 = false; //bool para a peça 66, pois se ela for encontrada, não é mais necessário verificar as outras peças.
 	bool dupla = false;
@@ -154,7 +154,7 @@ bool buscarPrimeiroJogador(tipo_Mao* M1, tipo_Mao* M2)
 		i++, qtde--;
 	}
 
-	if (p66 == false && dupla == false)//VERIFICA QUAL JOGADOR POSSUI MAO COM MENOR SOMA, SE NINGUEM TIVER PEÇA DUPLA
+	if (dupla == false)//VERIFICA QUAL JOGADOR POSSUI MAO COM MENOR SOMA, SE NINGUEM TIVER PEÇA DUPLA
 	{
 		int somaM1 = 0;
 		int somaM2 = 0;
@@ -183,6 +183,121 @@ bool buscarPrimeiroJogador(tipo_Mao* M1, tipo_Mao* M2)
 	}
 
 	return jogador;
-
 }
 
+//inverte as peça (12 = 21)
+void inverterPeca(tipo_Peca *peca)
+{
+	int aux;
+	aux = peca->ladoDireito;
+	peca->ladoDireito = peca->ladoEsquerdo;
+	peca->ladoEsquerdo = aux;
+}
+
+bool checarMaoVazia(tipo_Mao M1)
+{
+	bool maoVazia = false;
+	if (M1.qtde == 0)
+	{
+		maoVazia = true;
+	}
+	return maoVazia;
+}
+
+bool jogarPeca(tipo_Mesa *mesa, tipo_Mao *M1, int peca, char ladoJogado)
+{
+	int qtdeMesa = mesa->qtde;
+	bool jogou = false;
+	int i;
+
+	//verifica se pode jogar a peça
+	if (qtdeMesa == 0)
+	{
+		mesa->pecas[0] = M1->pecas[peca - 1];
+		mesa->qtde++;
+		removerPecaMao(M1, peca);
+		jogou = true;
+	}
+	else
+	{
+		if (ladoJogado == '1')
+		{
+			if (mesa->pecas[0].ladoEsquerdo == M1->pecas[peca - 1].ladoEsquerdo)
+			{
+				inverterPeca(&M1->pecas[peca - 1]);
+				jogou = true;
+			}
+			else
+			{
+				if (mesa->pecas[0].ladoEsquerdo == M1->pecas[peca - 1].ladoDireito)
+				{
+					
+					jogou = true;
+					
+				}
+			}
+
+			if (jogou == true)
+			{
+				for (i = (qtdeMesa - 1); i >= 0; i--)
+				{
+					mesa->pecas[i + 1] = mesa->pecas[i];
+				}
+				mesa->pecas[0] = M1->pecas[peca - 1];
+				mesa->qtde++;
+				removerPecaMao(M1, peca);
+			}
+
+		}
+
+		else //ladoJogado = '2'
+		{
+
+			if (mesa->pecas[qtdeMesa-1].ladoDireito == M1->pecas[peca - 1].ladoDireito)
+			{
+				inverterPeca(&M1->pecas[peca - 1]);
+				jogou = true;
+			}
+			else
+			{
+				if (mesa->pecas[qtdeMesa-1].ladoDireito == M1->pecas[peca - 1].ladoEsquerdo)
+				{
+
+					jogou = true;
+
+				}
+			}
+
+			if (jogou == true)
+			{
+				mesa->pecas[qtdeMesa] = M1->pecas[peca - 1];
+				mesa->qtde++;
+				removerPecaMao(M1, peca);
+			}
+		}
+	}
+	return jogou;
+}
+
+void sairDoJogo()
+{
+	exit(0);
+}
+
+void removerPecaMao(tipo_Mao *M1, int peca)
+{
+	int i;
+
+	if (peca == M1->qtde) 
+	{
+		M1->qtde--;
+	}
+	else
+	{
+		for (i = (peca-1); i < (M1->qtde - 1); i++)
+		{
+			M1->pecas[i] = M1->pecas[i + 1];
+		}
+		M1->qtde--;
+	}
+}
