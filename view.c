@@ -1,14 +1,15 @@
 /*
-PROJETO DO SEGUNDO SEMESTRE DE CIÊNCIA DA COMPUTAÇÃO
-NOMES:   CAROLINA BREITENWIESER RA00222650
-         CAROLINE UEHARA  RA00
-         ZEYNEP SALIHOGLU RA00  
-*/     
+ * dominoView.c
+ *
+ *  Created on: 3 de out de 2019
+ *    
+ */
+
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
-#include "view.h"
-#include "model.h"
+#include <stdlib.h>
+#include "dominoView.h"
+#include "dominoModel.h"
 
 //menu de quando o jogo é aberto
 char exibirMenu()
@@ -81,14 +82,14 @@ void mostrarMao(tipo_Mao mJ1)
 {
 	int i;
 
-	printf("**PEÇAS**\n");
+	printf("### SUAS PEÇAS ###\n");
 	for (i = 0; i < mJ1.qtde; i++)
 	{
 		printf("(%d)%d", (i+1), mJ1.pecas[i].ladoEsquerdo);
 		printf("%d\t",mJ1.pecas[i].ladoDireito);
 	}
 
-	printf("\n");
+	printf("\n\n");
 }
 
 void regrasDomino()
@@ -108,15 +109,57 @@ void mostrarMesa(tipo_Mesa mesa)
 	
 	if (mesa.qtde > 0)
 	{
+		printf("## MESA ##\n");
 		for(i=0; i<mesa.qtde; i++)
 		{
 			printf("-%d%d-",mesa.pecas[i].ladoEsquerdo,mesa.pecas[i].ladoDireito);
 		}
+		printf("\n");
 	}
 	else
 	{
-		printf("Mesa vazia!\n");//talvez nao seja necessario, checar depois!!
+		printf("Mesa vazia!\n");
+		printf("\n");
 	}
+}
 
-	
+char mostrarOpcoes()
+{
+	char opcao;
+	printf("(1)Jogar peça (2)Comprar peça (3)Salvar jogo (4)Sair do jogo\n");
+	printf("Selecione a opção: ");
+	opcao = getchar();
+
+	return opcao;
+}
+
+void numerodoJogador(int jogador)
+{
+	printf("Vez do Jogador %d\n", jogador);
+}
+
+int obterPecaJogada()
+{
+	int opcao;
+	printf("Qual peça será jogada?\n");
+	printf("Opção: ");
+	scanf("%d", &opcao);
+	return opcao;
+}
+
+char obterLadoJogado()
+{
+	char opcao;
+	printf("A peça será jogada no lado esquerdo ou lado direito?\n");
+	printf("(1) Lado esquerdo (2) Lado direito\n");
+	printf("Opcão: ");
+	opcao = getchar();
+
+	return opcao;
+}
+
+//limpa a tela a cada rodada, assim ó jogador vê apenas suas próprias peças
+void limparTela()
+{
+	system("clear || cls");
 }
