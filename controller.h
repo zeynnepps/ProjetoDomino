@@ -1,7 +1,18 @@
-#ifndef CONTROLLER_H_
-#define CONTROLLER_H_
+/*
+ * dominoController.h
+ *
+ *  Created on: 3 de out de 2019
+ *      
+ */
+
+#ifndef DOMINOCONTROLLER_H_
+#define DOMINOCONTROLLER_H_
+
+#include "dominoModel.h"
 
 void iniciarJogo();
 void iniciarPartida();
+void vezJogador(tipo_Mao *M1, tipo_Mesa *mesa, tipo_Monte *monte, int jogador);
 
-#endif /* CONTROLLER_H_ */
+
+#endif /* DOMINOCONTROLLER_H_ */
