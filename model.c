@@ -300,4 +300,27 @@ void removerPecaMao(tipo_Mao *M1, int peca)
 		}
 		M1->qtde--;
 	}
+void salvarJogo()
+{
+	
+	FILE * fPtr;
+	
+	fPtr = fopen("jogo.txt", "w"); //abre arquivo
+	
+		fputs(tipo_Mao,fptr);//w tipo_Mao
+	
+		fputs(tipo_Mesa,fptr);//w tipo_Mesa
+	
+		fputs(tipo_Peca,fptr);//w tipo_Peca
+	
+		fputs(tipo_Monte,fptr);//w tipo_Monte
+	
+	fclose(fPtr); //fecha arquivo
+	
+	printf("O jogo foi salvo!"); //depois colocar no view;
+
+
+    return ok;
+}
+	
 }
