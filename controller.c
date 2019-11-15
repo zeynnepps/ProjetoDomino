@@ -169,7 +169,7 @@ void vezJogador(tipo_Mao *M1, tipo_Mesa *mesa, tipo_Monte *monte, int jogador)
 			}
 			break;
 		case '3':
-			//salvar jogo
+			salvarJogo();
 			break;
 		case '4':
 			sairDoJogo();
