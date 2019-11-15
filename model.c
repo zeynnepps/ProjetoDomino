@@ -307,13 +307,14 @@ void salvarJogo()
 	
 	fPtr = fopen("jogo.txt", "w"); //abre arquivo
 	
-		fputs(tipo_Mao,fptr);//w tipo_Mao
+		fputs(tipo_Mao* M1,fptr);//w tipo_Mao
+		fputs(tipo_Mao* M2,fptr);//w tipo_Mao
 	
-		fputs(tipo_Mesa,fptr);//w tipo_Mesa
+		fputs(tipo_Mesa * mesa,fptr);//w tipo_Mesa
 	
-		fputs(tipo_Peca,fptr);//w tipo_Peca
-	
-		fputs(tipo_Monte,fptr);//w tipo_Monte
+		fputs(tipo_Peca * peca ,fptr);//w tipo_Peca
+
+		fputs(tipo_Monte * monte ,fptr);//w tipo_Monte
 	
 	fclose(fPtr); //fecha arquivo
 	
